@@ -3049,7 +3049,7 @@ margin: 0 0 0 2em;
 	font-weight: 600;
 }
 .buy{
-	background-color: black; /* Green */
+	background-color: black;
 	border: none;
 	color: yellow;
 	padding: 15px 32px;
@@ -3058,7 +3058,7 @@ margin: 0 0 0 2em;
 	font-size: 16px;
 }
 .buy2{
-	background-color: yellow; /* Green */
+	background-color: yellow;
 	border: none;
 	color: black;
 	padding: 15px 32px;
@@ -3081,4 +3081,13 @@ margin: 0 0 0 2em;
 }
 .input_num{
 	text-align: center;
+}
+.btn{
+	background-color: yellow;
+	border: none;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
 }

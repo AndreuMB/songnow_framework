@@ -39,54 +39,65 @@ $(document).ready(function(){
 	  document.getElementsByTagName('script')[0].parentNode.appendChild(script);
 	}
 
-	$(document).on('click','#send_contact',function(){
+	$(document).on('click','#send',function(){
 		result = true;
 		$(".error").remove();
 
-		var pname = /^[a-zA-Z]+[\-'\s]?[a-zA-Z]{2,51}$/;
-	    var pmessage = /^[0-9A-Za-z\s]{20,100}$/;
-    	var pmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+		var rname = /^[a-zA-Z]+[\-'\s]?[a-zA-Z]{2,51}$/;
+		var remail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+		var rmessage = /^[0-9A-Za-z\s]{20,100}$/;
 
-		if ($("#cname").val() === "" || $("#cname").val() === "Introduce tu nombre" ) {
-			$("#cname").focus().after("<span class='error'>Introduce tu nombre</span>");
-			return false;
-		}else if (!pname.test($("#cname").val())) {
-			$("#cname").focus().after("<span class='error'>El nombre tiene un minimo de 3 caracteres</span>");
-			return false;
+		if ($("#name").val() === ""){
+			$("#name").focus().after("<span class='error'>Introduce tu nombre</span>");
+			result=false;
+		}else if(!rname.test($("#name").val())){
+			$("#name").focus().after("<span class='error'>Introduce un nombre valido</span>");
+			result=false;
 		}
-		if ($("#cemail").val() === "" || $("#cemail").val() === "Introduce tu email" ) {
-			$("#cemail").focus().after("<span class='error'>Introduce tu email</span>");
-			return false;
-		}else if (!pmail.test($("#cemail").val())) {
-			$("#cemail").focus().after("<span class='error'>El formato del mail es incorrecto</span>");
-			return false;
+
+		if ($("#email").val() === ""){
+			$("#email").after("<span class='error'>Introduce tu email</span>");
+			if (result) {
+				$("#email").focus();
+				result=false;
+			}
+		}else if(!remail.test($("#email").val())){
+			$("#email").after("<span class='error'>Introduce un email valido</span>");
+			if (result) {
+				$("#email").focus();
+				result=false;
+			}
 		}
-		if ($("#matter").val() === "Seleccione un asunto" ) {
-			$("#matter").focus().after("<span class='error'>Seleccione un asunto</span>");
-			return false;
+
+		if ($("#message").val() === ""){
+			$("#message").after("<span class='error'>Introduce tu mensaje</span>");
+			if (result) {
+				$("#message").focus();
+				result=false;
+			}
+		}else if(!rmessage.test($("#message").val())){
+			$("#message").after("<span class='error'>Introduce un mensaje con almenos 20 caracteres</span>");
+			if (result) {
+				$("#message").focus();
+				result=false;
+			}
 		}
-		if ($("#message").val() === "" || $("#message").val() === "Seleccione un asunto" ) {
-			$("#message").focus().after("<span class='error'>Introduzca su mensaje</span>");
-			return false;
-		}else if (!pmessage.test($("#message").val())) {
-			$("#message").focus().after("<span class='error'>El mensaje tiene un minimo de 20 caracteres</span>");
-			return false;
-		}
-		
+
 		if (result) {
-			$('#send_contact').attr('disabled', true);
-			$('.ajaxLoader').fadeIn("fast");
-			var data = {"cname":$("#cname").val(),"cemail":$("#cemail").val(),"matter":$("#matter").val(),"message":$("#message").val()};
-			var fin_data = JSON.stringify(data);
-			$.post(amigable("?module=contact&function=send_cont"),{"fin_data":fin_data},function(data,event){
-				$('.ajaxLoader').fadeOut("fast");
-				console.log(data);
-				$("#rltsendmessage").html(data).fadeIn("slow");
+			console.log("ENTER");
+			// $('#send_contact').attr('disabled', true);
+			// $('.ajaxLoader').fadeIn("fast");
+			// var data = {"cname":$("#cname").val(),"cemail":$("#cemail").val(),"matter":$("#matter").val(),"message":$("#message").val()};
+			// var fin_data = JSON.stringify(data);
+			// $.post(amigable("?module=contact&function=send_cont"),{"fin_data":fin_data},function(data,event){
+			// 	$('.ajaxLoader').fadeOut("fast");
+			// 	console.log(data);
+			// 	$("#rltsendmessage").html(data).fadeIn("slow");
                     
-			    setTimeout(function() {
-			        $("#rltsendmessage").fadeOut("slow")
-			    }, 5000);
-			});
+			//     setTimeout(function() {
+			//         $("#rltsendmessage").fadeOut("slow")
+			//     }, 5000);
+			// });
 		}
 	});
 

@@ -1,3 +1,2 @@
 tests/apis.php
-utils/apis.inc.php
-utils/apis.inc.js
+utils/apis/
