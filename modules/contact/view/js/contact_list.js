@@ -45,7 +45,8 @@ $(document).ready(function(){
 
 		var rname = /^[a-zA-Z]+[\-'\s]?[a-zA-Z]{2,51}$/;
 		var remail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-		var rmessage = /^[0-9A-Za-z\s]{20,100}$/;
+		var rmessage = /^.{10,40}$/;
+		var form = [];
 
 		if ($("#name").val() === ""){
 			$("#name").focus().after("<span class='error'>Introduce tu nombre</span>");
@@ -53,6 +54,8 @@ $(document).ready(function(){
 		}else if(!rname.test($("#name").val())){
 			$("#name").focus().after("<span class='error'>Introduce un nombre valido</span>");
 			result=false;
+		}else{
+			form.push($("#name").val());
 		}
 
 		if ($("#email").val() === ""){
@@ -67,6 +70,8 @@ $(document).ready(function(){
 				$("#email").focus();
 				result=false;
 			}
+		}else{
+			form.push($("#email").val());
 		}
 
 		if ($("#message").val() === ""){
@@ -81,10 +86,18 @@ $(document).ready(function(){
 				$("#message").focus();
 				result=false;
 			}
+		}else{
+			form.push($("#message").val());
 		}
 
 		if (result) {
-			console.log("ENTER");
+			console.log(form);
+			g_promise("?module=contact&function=send_email", form)
+			.then(function(data){
+				console.log(data);
+			}).catch(function(){
+				console.log("error");
+			})
 			// $('#send_contact').attr('disabled', true);
 			// $('.ajaxLoader').fadeIn("fast");
 			// var data = {"cname":$("#cname").val(),"cemail":$("#cemail").val(),"matter":$("#matter").val(),"message":$("#message").val()};

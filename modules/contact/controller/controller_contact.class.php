@@ -13,6 +13,40 @@
 			require(VIEW_PATH_INC . "footer.html");
 		}
 		
+		function send_email(){
+			// print_r($_POST['p_data']);
+			$data_mail = $_POST['p_data']; // p_data=same u have in promise
+			
+			//SEND CLIENT
+			$arrArgument = array(
+				'type' => 'contact',
+				'inputName' => $data_mail[0],
+				'inputEmail' => $data_mail[1],
+				'inputMessage' => $data_mail[2]
+			);
+			try{
+				email($arrArgument);
+			}catch(exeption $e){
+				echo "error";
+				exit;
+			}
+
+			//SEND ADMIN
+			$arrArgument = array(
+				'type' => 'admin',
+				'inputName' => $data_mail[0],
+				'inputEmail' => $data_mail[1],
+				'inputMessage' => $data_mail[2]
+			);
+			try{
+				email($arrArgument);
+			}catch(exeption $e){
+				echo "error";
+				exit;
+			}
+
+			echo json_encode("done");
+		}
 		// function send_cont(){
 		// 	$data_mail = array();
 		// 	$data_mail = json_decode($_POST['fin_data'],true);

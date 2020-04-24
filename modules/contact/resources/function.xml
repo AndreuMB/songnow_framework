@@ -5,7 +5,7 @@
         <uri>list_contact</uri>
     </function>
     <function>
-        <name>send_cont</name>
-        <uri>send_cont</uri>
+        <name>send_email</name>
+        <uri>send_email</uri>
     </function>
 </functions>

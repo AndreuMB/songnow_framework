@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="view/assets/css/main.css"/>
         <script src="modules/contact/view/js/contact_list.js"></script>
         <script src="utils/apis/apis.inc.js"></script>
+        <script src="utils/common.inc.js"></script>
         <!-- <script src="module/home/model/validate_home.js"></script>
         <script src="view/js/translate.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
