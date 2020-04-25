@@ -45,7 +45,7 @@ $(document).ready(function(){
 
 		var rname = /^[a-zA-Z]+[\-'\s]?[a-zA-Z]{2,51}$/;
 		var remail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-		var rmessage = /^.{10,40}$/;
+		var rmessage = /^.{10,100}$/;
 		var form = [];
 
 		if ($("#name").val() === ""){
@@ -81,7 +81,7 @@ $(document).ready(function(){
 				result=false;
 			}
 		}else if(!rmessage.test($("#message").val())){
-			$("#message").after("<span class='error'>Introduce un mensaje con almenos 20 caracteres</span>");
+			$("#message").after("<span class='error'>Introduce un mensaje con almenos 10 caracteres</span>");
 			if (result) {
 				$("#message").focus();
 				result=false;
@@ -92,11 +92,14 @@ $(document).ready(function(){
 
 		if (result) {
 			console.log(form);
-			g_promise("?module=contact&function=send_email", form)
+			g_promise(amigable("module=contact&function=send_email"), form)
 			.then(function(data){
 				console.log(data);
+				document.getElementById("form").reset();
+				toastr["success"]("Your email has been sent");
 			}).catch(function(){
 				console.log("error");
+				toastr["error"]("An error has ocurred. Please try again");
 			})
 			// $('#send_contact').attr('disabled', true);
 			// $('.ajaxLoader').fadeIn("fast");

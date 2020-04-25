@@ -14,7 +14,6 @@
 		}
 		
 		function send_email(){
-			// print_r($_POST['p_data']);
 			$data_mail = $_POST['p_data']; // p_data=same u have in promise
 			
 			//SEND CLIENT
@@ -44,7 +43,6 @@
 				echo "error";
 				exit;
 			}
-
 			echo json_encode("done");
 		}
 		// function send_cont(){

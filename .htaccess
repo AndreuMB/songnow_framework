@@ -1,0 +1,13 @@
+RewriteEngine on
+RewriteBase /songnow_framework/
+RewriteCond %{REQUEST_FILENAME} !-f
+Rewriterule ^([^/]*)/([^/]*)/([^/]*)/([^/]*)$ index.php?module=$1&function=$2&param=$3&param2=$4 [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+Rewriterule ^([^/]*)/([^/]*)/([^/]*)$ index.php?module=$1&function=$2&param=$3 [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+Rewriterule ^([^/]*)/([^/]*)$ index.php?module=$1&function=$2 [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+Rewriterule ^([^/]*)$ index.php?module=$1 [L,NC]

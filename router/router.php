@@ -2,7 +2,7 @@
 require_once("paths.php");
 // // require 'autoload.php';
 
-// include(UTILS . "utils.inc.php");
+include(UTILS . "utils.inc.php");
 include(UTILS . "common.inc.php");
 include(UTILS . "apis/apis.inc.php");
 // include(UTILS . "upload.inc.php");
@@ -19,6 +19,13 @@ include(UTILS . "mail.inc.php");
 // ob_start();
 // session_start();
 // $_SESSION['module'] = "";
+
+function error404(){
+    require_once(VIEW_PATH_INC . "header.php");
+    require_once(VIEW_PATH_INC . "menu.php");
+    require_once(VIEW_PATH_INC . "404.php");
+    require_once(VIEW_PATH_INC . "footer.html"); 
+}
 
 function handlerRouter() {
     if (!empty($_GET['module'])) {
@@ -54,20 +61,14 @@ function handlerModule($URI_module, $URI_function) {
                 $controllerClass = "controller_" . $URI_module;
                 $obj = new $controllerClass;
             } else {
-                require_once(VIEW_PATH_INC . "header.php");
-                require_once(VIEW_PATH_INC . "menu.php");
-                require_once(VIEW_PATH_INC . "404.php");
-                require_once(VIEW_PATH_INC . "footer.html");
+                error404();
             }
             handlerfunction(((String) $module->name), $obj, $URI_function);
             break;
         }
     }
     if (!$exist) {
-        require_once(VIEW_PATH_INC . "header.php");
-        require_once(VIEW_PATH_INC . "menu.php");
-        require_once(VIEW_PATH_INC . "404.php");
-        require_once(VIEW_PATH_INC . "footer.html");
+        error404();
     }
 }
 
@@ -84,10 +85,7 @@ function handlerfunction($module, $obj, $URI_function) {
     }
 
     if (!$exist) {
-        require_once(VIEW_PATH_INC . "header.php");
-        require_once(VIEW_PATH_INC . "menu.php");
-        require_once(VIEW_PATH_INC . "404.php");
-        require_once(VIEW_PATH_INC . "footer.html");
+        error404();
     } else {
         call_user_func(array($obj, $event));
     }
