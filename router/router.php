@@ -1,24 +1,10 @@
 <?php
 require_once("paths.php");
-// // require 'autoload.php';
 
 include(UTILS . "utils.inc.php");
 include(UTILS . "common.inc.php");
 include(UTILS . "apis/apis.inc.php");
-// include(UTILS . "upload.inc.php");
 include(UTILS . "mail.inc.php");
-
-// // if (PRODUCTION) { //estamos en producción
-// //     ini_set('display_errors', '1');
-// //     ini_set('error_reporting', E_ERROR | E_WARNING); //error_reporting(E_ALL) ;
-// // } else {
-// //     ini_set('display_errors', '0');
-// //     ini_set('error_reporting', '0'); //error_reporting(0); 
-// // }
-
-// ob_start();
-// session_start();
-// $_SESSION['module'] = "";
 
 function error404(){
     require_once(VIEW_PATH_INC . "header.php");
@@ -32,18 +18,14 @@ function handlerRouter() {
         $URI_module = $_GET['module'];
     } else {
         $URI_module = 'contact';
-        /////PREGUNTAR
-        // echo'<script>window.location.href = "./contact/list_contact/";</script>';
-        /////PREGUNTAR
+        header('Location: '. amigable('module=contact'));
     }
 
     if (!empty($_GET['function'])) {
         $URI_function = $_GET['function'];
     } else {
-        $URI_function = 'list_contact';
+        $URI_function = 'list_' . $URI_module;
     }
-    // $URI_module = 'contact';
-    // $URI_function = 'list_contact';
     handlerModule($URI_module, $URI_function);
 }
 

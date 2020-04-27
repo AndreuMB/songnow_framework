@@ -1,12 +1,18 @@
 <?php
-    function amigable($url, $return = false) {
+    function amigable($url, $return = true) {
         $amigableson = URL_AMIGABLES;
         $link = "";
+        $count = 0;
         if ($amigableson) {
             $url = explode("&", str_replace("?", "", $url));
             foreach ($url as $key => $value) {
                 $aux = explode("=", $value);
-                $link .=  $aux[1]."/";
+                if ($count == 0){
+                    $link .=  $aux[1];
+                }else{
+                    $link .=  "/" . $aux[1];
+                }
+                $count++;
             }
         } else {
             $link = "index.php?" . $url;
