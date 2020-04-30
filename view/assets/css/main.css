@@ -2082,10 +2082,11 @@ input::-moz-focus-inner {
 /* Banner */
 
 	#banner {
-		position: relative;
+		/* position: relative */
 		padding: 4.5em;
 		background:rgb(37, 37, 37);
 		color: yellow;
+		margin-top: 7em;
 	}
 
 		#banner h2 {
@@ -3090,4 +3091,7 @@ margin: 0 0 0 2em;
 	text-decoration: none;
 	font-size: 16px;
 	font-weight: bold;
+}
+#menu{
+	margin: 2em 2em 2em 2em;
 }

@@ -18,7 +18,7 @@ function handlerRouter() {
         $URI_module = $_GET['module'];
     } else {
         $URI_module = 'contact';
-        header('Location: '. amigable('module=contact'));
+        header('Location: '. amigable('module=contact', true));
     }
 
     if (!empty($_GET['function'])) {

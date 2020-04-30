@@ -1,5 +1,5 @@
 <?php
-    function amigable($url, $return = true) {
+    function amigable($url, $return = false) {
         $amigableson = URL_AMIGABLES;
         $link = "";
         $count = 0;
