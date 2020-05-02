@@ -8,15 +8,12 @@
         <link rel="stylesheet" href="/songnow_framework/view/assets/css/main.css" />
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+        <script src="/songnow_framework/view/assets/js/jquery-3.5.0.min.js"></script>
         <script src="/songnow_framework/view/assets/js/jquery.min.js"></script>
-        <script src="/songnow_framework/view/assets/js/jquery.dropotron.min.js"></script>
-        <script src="/songnow_framework/view/assets/js/browser.min.js"></script>
-        <script src="/songnow_framework/view/assets/js/breakpoints.min.js"></script>
-        <script src="/songnow_framework/view/assets/js/util.js"></script>
-        <script src="/songnow_framework/view/assets/js/main.js"></script>
         <script src="/songnow_framework/modules/home/view/js/home.js"></script>
         <script src="/songnow_framework/utils/common.inc.js"></script>
-        <script src="/songnow_framework/view/assets/js/translate.js"></script>        
+        <script src="/songnow_framework/view/assets/js/translate.js"></script>
+        
 
     </head>
     <body class="is-preload homepage">

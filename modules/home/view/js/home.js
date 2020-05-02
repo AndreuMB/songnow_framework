@@ -1,4 +1,4 @@
-function carousel () {
+function carousel() {
     $("#carousel-example").on("slide.bs.carousel", function (e) {
         /*
         CC 2.0 License Iatek LLC 2018 – Attribution required
@@ -21,22 +21,17 @@ function carousel () {
             }
         }
     });
-    $.ajax({
-        //data: {"parametro1" : "valor1"},
-        type: "GET",
-        dataType: "json",
-        url: "module/home/controller/controller_home.php?op=carousel",
-    })
-     .done(function(data) {
+    g_promise(amigable("module=home&function=carousel"))
+    .then(function(data){
         console.log(data);
         $('#carousel-example').empty();
         // $('<div></div>').attr('id','Div1').appendTo('#carousel-example');
                     //  $('<div></div>').attr('id','Div2').appendTo('#modalcontent');
                     //  $('<div></div>').attr('id','preciocasa').appendTo('#modalcontent');
                     
-                     var string_car=""
+                        var string_car=""
 
-                         
+                            
                     for(var i=0;i<data.length;i++){
                         if(i==0){
                             console.log("0")
@@ -53,9 +48,9 @@ function carousel () {
                             // console.log(string_car)
                         }
                     }
-                     $("#carousel-example").html(
+                        $("#carousel-example").html(
                         '<div class="carousel-inner row w-100 mx-auto" role="listbox">'+
-                         string_car+
+                            string_car+
                     '</div>'+
                         '<a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">'+
                         '<span class="carousel-control-prev-icon" aria-hidden="true"></span>'+
@@ -65,9 +60,13 @@ function carousel () {
                         '<span class="carousel-control-next-icon" aria-hidden="true"></span>'+
                         '<span class="sr-only">Next</span>'+
                     '</a>'
-                    )                     
-     })
+                    )
+    }).catch(function(){
+        console.log("error");
+        toastr["error"]("An error has ocurred. Please try again");
+    })
 }
+
 function categories(){
     var current_page	=	1;
     var loading			=	false;
@@ -191,28 +190,27 @@ function api(){
 }
 
 $(document).ready(function () {
-    console.log("home");
     carousel();
-    categories();
-    api();
-    $(document).on('click','.categ_img',function () {
-        var id = this.getAttribute('id');
-        console.log(id);
-        sum_view(id);
-    });
-    $(document).on('click','.related',function () {
-        var id = this.getAttribute('id');
-        console.log(id);
-        window.location.href = id;
-    });
-    $(document).on('click','.img_car',function () {
-        var id = this.getAttribute('id');
-        console.log(id);
-        carousel_details(id);
-    });
-    $(document).on('click','.account',function () {
-        var id = this.getAttribute('id');
-        console.log(id);
-        account(id);
-    });
+    // categories();
+    // api();
+    // $(document).on('click','.categ_img',function () {
+    //     var id = this.getAttribute('id');
+    //     console.log(id);
+    //     sum_view(id);
+    // });
+    // $(document).on('click','.related',function () {
+    //     var id = this.getAttribute('id');
+    //     console.log(id);
+    //     window.location.href = id;
+    // });
+    // $(document).on('click','.img_car',function () {
+    //     var id = this.getAttribute('id');
+    //     console.log(id);
+    //     carousel_details(id);
+    // });
+    // $(document).on('click','.account',function () {
+    //     var id = this.getAttribute('id');
+    //     console.log(id);
+    //     account(id);
+    // });
 });

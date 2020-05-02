@@ -4,4 +4,8 @@
         <name>list_home</name>
         <uri>list_home</uri>
     </function>
+        <function>
+        <name>carousel</name>
+        <uri>carousel</uri>
+    </function>
 </functions>

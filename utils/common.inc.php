@@ -4,14 +4,22 @@
         
         if (file_exists($model)) {
             include_once($model);
+            include_once("C:/xampp/htdocs/songnow_framework/modules/home/model/BLL/home_bll.class.singleton.php");
+            include_once("C:/xampp/htdocs/songnow_framework/modules/home/model/DAO/home_dao.class.singleton.php");
+            include_once("C:/xampp/htdocs/songnow_framework/model/db.class.singleton.php");
+            
             $modelClass = $model_name;
 
             if (!method_exists($modelClass, $function)){
                 throw new Exception();
             }
-
+            
             $obj = $modelClass::getInstance();
+
+            // return $obj;
+
             if (isset($arrArgument)){
+                
                 if (isset($arrArgument2)) {
                     //return $obj->$function($arrArgument,$arrArgument2);
                     return call_user_func(array($obj, $function),$arrArgument,$arrArgument2);
@@ -19,7 +27,7 @@
                 //return $obj->$function($arrArgument);
                 return call_user_func(array($obj, $function),$arrArgument);
             }   
-            
+
         } else {
             throw new Exception();
         }
