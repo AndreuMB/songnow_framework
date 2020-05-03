@@ -47,4 +47,4 @@
     define('HTML_HOME', SITE_ROOT . 'modules/home/view/');
 
     //amigables
-    define('URL_AMIGABLES', FALSE);
+    define('URL_AMIGABLES', TRUE);

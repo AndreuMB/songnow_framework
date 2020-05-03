@@ -15,9 +15,7 @@
         }
         
         private function setConexion() {
-            require_once 'conf.class.singleton.php'; // esta mal
             $conf = Conf::getInstance();
-            
             $this->server = $conf->getHostDB();
             $this->database = $conf->getDB();
             $this->user = $conf->getUserDB();

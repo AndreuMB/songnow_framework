@@ -1,6 +1,7 @@
 <?php
-require_once("paths.php");
+require 'autoload.php';
 
+require_once("paths.php");
 include(UTILS . "utils.inc.php");
 include(UTILS . "common.inc.php");
 include(UTILS . "apis/apis.inc.php");
@@ -17,8 +18,8 @@ function handlerRouter() {
     if (!empty($_GET['module'])) {
         $URI_module = $_GET['module'];
     } else {
-        $URI_module = 'contact';
-        header('Location: '. amigable('module=contact', true));
+        $URI_module = 'home';
+        header('Location: '. amigable('module=home', true));
     }
 
     if (!empty($_GET['function'])) {

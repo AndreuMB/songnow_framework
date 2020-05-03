@@ -1,5 +1,16 @@
 <?php
-  function loadModel($model_path, $model_name, $function, $arrArgument = '',$arrArgument2 = ''){
+class common {
+
+    static $_instance;
+
+    public static function getInstance() {
+        if (!(self::$_instance instanceof self)){
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
+
+    public function loadModel($model_path, $model_name, $function, $arrArgument = '',$arrArgument2 = ''){
         $model = $model_path . $model_name . '.class.singleton.php';
         
         if (file_exists($model)) {
@@ -30,7 +41,7 @@
         }
     }
 
-    function loadView($rutaVista = '', $templateName = '', $arrPassValue = '') {
+    public function loadView($rutaVista = '', $templateName = '', $arrPassValue = '') {
         $view_path = $rutaVista . $templateName;
         $arrData = '';
 
@@ -45,3 +56,5 @@
             //die();
         }
     }
+}
+  
