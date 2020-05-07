@@ -15,6 +15,7 @@
         <script src="/songnow_framework/view/assets/js/breakpoints.min.js"></script>
         <script src="/songnow_framework/view/assets/js/util.js"></script>
         <script src="/songnow_framework/view/assets/js/main.js"></script>
+        <script src="/songnow_framework/view/assets/js/menu.js"></script>
         <script src="/songnow_framework/modules/contact/view/js/contact_list.js"></script>
         <script src="/songnow_framework/utils/apis/apis.inc.js"></script>
         <script src="/songnow_framework/utils/common.inc.js"></script>

@@ -48,9 +48,21 @@ class home_dao {
         return $db->ejecutar($sql);
     }
     public function select_data_carousel($db) {
-        $sql = "SELECT * FROM img WHERE type='carousel'";
+        $sql = "SELECT img.*, songs.id_song FROM img, songs WHERE type='carousel' AND songs.id_img=img.id";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
-    
+    public function select_data_categories($db,$arrArgument) {
+        $sql = "SELECT * FROM img WHERE type='categories' ORDER BY views DESC LIMIT $arrArgument OFFSET 0";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+    public function update_sum_view_song($db,$arrArgument) {
+        $sql = "UPDATE songs set views=views+1 WHERE songs.id_song='$arrArgument'";
+        return $db->ejecutar($sql);
+    }
+    public function update_sum_view_categ($db,$arrArgument) {
+        $sql = "UPDATE img set views=views+1 WHERE img.id=$arrArgument";
+        return $db->ejecutar($sql);
+    }
 }

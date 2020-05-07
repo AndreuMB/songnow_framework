@@ -1,4 +1,5 @@
 function carousel() {
+    
     $("#carousel-example").on("slide.bs.carousel", function (e) {
         /*
         CC 2.0 License Iatek LLC 2018 – Attribution required
@@ -21,8 +22,10 @@ function carousel() {
             }
         }
     });
+    
     g_promise(amigable("module=home&function=carousel"))
     .then(function(data){
+        console.log("carousel");
         console.log(data);
         $('#carousel-example').empty();
         // $('<div></div>').attr('id','Div1').appendTo('#carousel-example');
@@ -63,7 +66,7 @@ function carousel() {
                     )
     }).catch(function(){
         console.log("error");
-        toastr["error"]("An error has ocurred. Please try again");
+        // toastr["error"]("An error has ocurred. Please try again");
     })
 }
 
@@ -84,14 +87,10 @@ function categories(){
 }
 
 function scroll(current_page){
-        $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "module/home/controller/controller_home.php?op=scroll&p=" + current_page,
-    })
-     .done(function(data) {
-        console.log("data categ= ");
-          console.log("categories");
+    console.log("categories1");
+    g_promise(amigable("module=home&function=categories"),current_page)
+    .then(function(data){
+        console.log("categories");
         console.log(data)
 
         var img_categ=""
@@ -122,41 +121,21 @@ function scroll(current_page){
 
 }
 
-function sum_view(id){
-    console.log("sum" + id);
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "module/home/controller/controller_home.php?op=sum_view&id=" + id,
-    })
-     .done(function(data) {
-        categ_shop(id);   
-})
-}
-
-function sum_view(id){
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "module/home/controller/controller_home.php?op=sum_view&id=" + id,
-    })
-     .done(function(data) {
-        categ_shop(id);
-    })
-}
-
-function account(id){
-    localStorage.setItem('account', id);
-    window.location.href = 'index.php?page=controller_login&op=list';
-}
 function categ_shop(id){
-    localStorage.setItem('filter', id);
-    window.location.href = 'index.php?page=controller_songs&op=list';
+    g_promise(amigable("module=home&function=sum_view_categ"),id)
+    .then(function(data){
+        localStorage.setItem('filter', id);
+        window.location.href = amigable("module=songs");
+    })
 }
 
 function carousel_details(id){
-    localStorage.setItem('carousel', id);
-    window.location.href = 'index.php?page=controller_songs&op=list';
+    g_promise(amigable("module=home&function=sum_view_song"),id)
+    .then(function(data){
+        localStorage.setItem('carousel', id);
+        window.location.href = amigable("module=songs");
+    })
+
 
 }
 
@@ -190,24 +169,25 @@ function api(){
 }
 
 $(document).ready(function () {
+    console.log("shome");
     carousel();
-    // categories();
+    categories();
     // api();
-    // $(document).on('click','.categ_img',function () {
-    //     var id = this.getAttribute('id');
-    //     console.log(id);
-    //     sum_view(id);
-    // });
+    $(document).on('click','.categ_img',function () {
+        var id = this.getAttribute('id');
+        console.log(id);
+        categ_shop(id);
+    });
     // $(document).on('click','.related',function () {
     //     var id = this.getAttribute('id');
     //     console.log(id);
     //     window.location.href = id;
     // });
-    // $(document).on('click','.img_car',function () {
-    //     var id = this.getAttribute('id');
-    //     console.log(id);
-    //     carousel_details(id);
-    // });
+    $(document).on('click','.img_car',function () {
+        var id = this.getAttribute('id');
+        console.log(id);
+        carousel_details(id);
+    });
     // $(document).on('click','.account',function () {
     //     var id = this.getAttribute('id');
     //     console.log(id);

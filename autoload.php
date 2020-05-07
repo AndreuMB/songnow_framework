@@ -1,6 +1,6 @@
 <?php
 spl_autoload_register(null, false);
-spl_autoload_extensions('.php,.inc.php,.class.php,.class.singleton.php,.class.inc.php');
+spl_autoload_extensions('.php,.inc.php,.class.php,.class.singleton.php');
 
 spl_autoload_register('loadClasses');
 function loadClasses($className) {
@@ -23,12 +23,8 @@ function loadClasses($className) {
         set_include_path('model/');
         spl_autoload($className);
     }
-    elseif (file_exists('utils/' . $className . '.class.inc.php')) { // application level utils
+    elseif (file_exists('utils/' . $className . '.class.php')) { // application level utils
         set_include_path('utils/');
         spl_autoload($className);
     }
-}
-
-function loadFunctions($functionName){
-
 }

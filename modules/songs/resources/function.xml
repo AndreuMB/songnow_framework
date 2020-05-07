@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>list_songs</name>
+        <uri>list_songs</uri>
+    </function>
+    <function>
+        <name>pagination</name>
+        <uri>pagination</uri>
+    </function>
+    <function>
+        <name>page</name>
+        <uri>page</uri>
+    </function>
+    <function>
+        <name>categories</name>
+        <uri>categories</uri>
+    </function>
+    <function>
+        <name>filter</name>
+        <uri>filter</uri>
+    </function>
+    <function>
+        <name>read</name>
+        <uri>read</uri>
+    </function>
+    <function>
+        <name>sum_view</name>
+        <uri>sum_view</uri>
+    </function>
+    <function>
+        <name>map</name>
+        <uri>map</uri>
+    </function>
+    <function>
+        <name>cat</name>
+        <uri>cat</uri>
+    </function>
+    <function>
+        <name>load</name>
+        <uri>load</uri>
+    </function>
+</functions>

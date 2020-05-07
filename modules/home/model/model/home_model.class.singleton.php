@@ -17,6 +17,9 @@ class home_model {
     public function carousel(){
         return $this->bll->obtain_data_carousel_BLL();
     }
+    public function categories($arrArgument){
+        return $this->bll->obtain_data_categories_BLL($arrArgument);
+    }
     public function obtain_data_list($arrArgument){
         return $this->bll->obtain_data_list_BLL($arrArgument);
     }
@@ -34,5 +37,11 @@ class home_model {
     }
     public function active_user($arrArgument){
         return $this->bll->active_user_BLL($arrArgument);
+    }
+    public function sum_view_song($arrArgument){
+        return $this->bll->sum_view_song_BLL($arrArgument);
+    }
+    public function sum_view_categ($arrArgument){
+        return $this->bll->sum_view_categ_BLL($arrArgument);
     }
 }

@@ -7,7 +7,6 @@
 		function list_contact(){
 			// die("enter in list contact");
 			require(VIEW_PATH_TOP . "top_" . $_GET['module'] . ".php");
-			require(VIEW_PATH_INC . "header.php");
 			require(VIEW_PATH_INC . "menu.php");
 			loadView('modules/contact/view/','contact_list.html');
 			require(VIEW_PATH_INC . "footer.html");

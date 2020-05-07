@@ -4,8 +4,20 @@
         <name>list_home</name>
         <uri>list_home</uri>
     </function>
-        <function>
+    <function>
         <name>carousel</name>
         <uri>carousel</uri>
+    </function>
+    <function>
+        <name>categories</name>
+        <uri>categories</uri>
+    </function>
+    <function>
+        <name>sum_view_song</name>
+        <uri>sum_view_song</uri>
+    </function>
+    <function>
+        <name>sum_view_categ</name>
+        <uri>sum_view_categ</uri>
     </function>
 </functions>

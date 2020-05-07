@@ -12,7 +12,10 @@
         <script src="/songnow_framework/view/assets/js/jquery.min.js"></script>
         <script src="/songnow_framework/modules/home/view/js/home.js"></script>
         <script src="/songnow_framework/utils/common.inc.js"></script>
+        <script src="/songnow_framework/view/assets/js/main.js"></script>
+        <script src="/songnow_framework/view/assets/js/menu.js"></script>
         <script src="/songnow_framework/view/assets/js/translate.js"></script>
+        
         
 
     </head>

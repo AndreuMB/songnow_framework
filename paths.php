@@ -46,5 +46,14 @@
     define('JS_VIEW_HOME', SITE_PATH . 'modules/home/view/js/');
     define('HTML_HOME', SITE_ROOT . 'modules/home/view/');
 
+    //MODEL_SONGS
+    define('UTILS_SONGS', SITE_ROOT . 'modules/songs/utils/');
+    define('MODEL_PATH_SONGS', SITE_ROOT . 'modules/songs/model/');
+    define('DAO_SONGS', SITE_ROOT . 'modules/songs/model/DAO/');
+    define('BLL_SONGS', SITE_ROOT . 'modules/songs/model/BLL/');
+    define('MODEL_SONGS', SITE_ROOT . 'modules/songs/model/model/');
+    define('JS_VIEW_SONGS', SITE_PATH . 'modules/songs/view/js/');
+    define('HTML_SONGS', SITE_ROOT . 'modules/songs/view/');
+
     //amigables
-    define('URL_AMIGABLES', TRUE);
+    define('URL_AMIGABLES', FALSE);

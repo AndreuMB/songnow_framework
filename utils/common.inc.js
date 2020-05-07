@@ -1,4 +1,7 @@
 function g_promise(urlg, p_data=undefined){
+    console.log("g_promise");
+    console.log(urlg);
+    console.log(p_data);
     return new Promise(function (resolve, reject){
         $.ajax({
             type:'POST',

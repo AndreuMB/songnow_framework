@@ -19,6 +19,9 @@
 		public function obtain_data_carousel_BLL(){
 			return $this->dao->select_data_carousel($this->db);
 		}
+		public function obtain_data_categories_BLL($arrArgument){
+			return $this->dao->select_data_categories($this->db,$arrArgument);
+		}
 	    public function obtain_data_list_BLL($arrArgument){
 	      return $this->dao->select_data_list($this->db,$arrArgument);
 	    }
@@ -36,5 +39,12 @@
 	    }
 	    public function active_user_BLL($arrArgument){
 	      return $this->dao->update_active_user($this->db,$arrArgument);
-	    }
+		}
+		public function sum_view_song_BLL($arrArgument){
+			return $this->dao->update_sum_view_song($this->db,$arrArgument);
+		}
+		public function sum_view_categ_BLL($arrArgument){
+			return $this->dao->update_sum_view_categ($this->db,$arrArgument);
+		}
+		
 	}

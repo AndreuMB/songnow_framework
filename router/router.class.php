@@ -3,18 +3,20 @@ require 'autoload.php';
 require_once("paths.php");
 // include(UTILS . "utils.inc.php");
 // include(UTILS . "common.inc.php");
-include(UTILS . "apis/apis.inc.php");
-include(UTILS . "mail.inc.php");
+include(UTILS . "apis/apis.php"); // api mailgun
+// include(UTILS . "mail.inc.php");
 
 class router {
 
-    private $utils;
-    private $common;
+    public $utils;
+    public $common;
+    public $mail;
     static $_instance;
 
     private function __construct() {
         $this->utils = utils::getInstance();
         $this->common = common::getInstance();
+        $this->mail = mail::getInstance();
         $this->handlerRouter();
     }
 
@@ -37,7 +39,7 @@ class router {
             $URI_module = $_GET['module'];
         } else {
             $URI_module = 'home';
-            header('Location: '. amigable('module=home', true));
+            header('Location: '. $this->utils->amigable('module=home', true));
         }
     
         if (!empty($_GET['function'])) {
@@ -62,14 +64,16 @@ class router {
                     $controllerClass = "controller_" . $URI_module;
                     $obj = new $controllerClass;
                 } else {
-                    error404();
+                    $this->error404();
                 }
                 $this->handlerfunction(((String) $module->name), $obj, $URI_function);
                 break;
             }
         }
         if (!$exist) {
-            error404();
+            echo $URI_module;
+            echo (String) $module->uri;
+            $this->error404();
         }
     }
     
@@ -86,7 +90,7 @@ class router {
         }
     
         if (!$exist) {
-            error404();
+            $this->error404();
         } else {
             call_user_func(array($obj, $event));
         }

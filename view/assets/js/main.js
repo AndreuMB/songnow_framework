@@ -10,12 +10,12 @@
 		$body = $('body');
 
 	// Breakpoints.
-		breakpoints({
-			xlarge:  [ '1281px',  '1680px' ],
-			large:   [ '981px',   '1280px' ],
-			medium:  [ '737px',   '980px'  ],
-			small:   [ null,      '736px'  ]
-		});
+		// breakpoints({
+		// 	xlarge:  [ '1281px',  '1680px' ],
+		// 	large:   [ '981px',   '1280px' ],
+		// 	medium:  [ '737px',   '980px'  ],
+		// 	small:   [ null,      '736px'  ]
+		// });
 
 	// Play initial animations on page load.
 		$window.on('load', function() {
@@ -25,11 +25,11 @@
 		});
 
 	// Dropdowns.
-		$('#nav > ul').dropotron({
-			mode: 'fade',
-			noOpenerFade: true,
-			speed: 300
-		});
+		// $('#nav > ul').dropotron({
+		// 	mode: 'fade',
+		// 	noOpenerFade: true,
+		// 	speed: 300
+		// });
 
 	// Nav.
 
@@ -42,41 +42,48 @@
 				.appendTo($body);
 
 		// Panel.
-			$(
-				'<div id="navPanel">' +
-					'<nav>' +
-						$('#nav').navList() +
-					'</nav>' +
-				'</div>'
-			)
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'left',
-					target: $body,
-					visibleClass: 'navPanel-visible'
-				});
+			// $(
+			// 	'<div id="navPanel">' +
+			// 		'<nav>' +
+			// 			$('#nav').navList() +
+			// 		'</nav>' +
+			// 	'</div>'
+			// )
+			// 	.appendTo($body)
+			// 	.panel({
+			// 		delay: 500,
+			// 		hideOnClick: true,
+			// 		hideOnSwipe: true,
+			// 		resetScroll: true,
+			// 		resetForms: true,
+			// 		side: 'left',
+			// 		target: $body,
+			// 		visibleClass: 'navPanel-visible'
+			// 	});
 
 })(jQuery);
 
 function amigable(url) {
-    var link="";
-    url = url.replace("?", "");
-    url = url.split("&");
-    cont = 0;
-    for (var i=0;i<url.length;i++) {
-    	cont++;
-        var aux = url[i].split("=");
-        if (cont == 2) {
-        	link +=  "/"+aux[1]+"/";	
-        }else{
-        	link +=  "/"+aux[1];
-        }
-        
-    }
-    return "http://localhost/songnow_framework" + link;
+	var switich = false;
+	if (switich){
+		var link="";
+		url = url.replace("?", "");
+		url = url.split("&");
+		cont = 0;
+		for (var i=0;i<url.length;i++) {
+			cont++;
+			var aux = url[i].split("=");
+			if (cont == 2) {
+				link +=  "/"+aux[1]+"/";	
+			}else{
+				link +=  "/"+aux[1];
+			}
+			
+		}
+		return "http://localhost/songnow_framework" + link;
+	}else{
+		console.log("url: " + url)
+		return "http://localhost/songnow_framework/index.php?" + url;
+	}
+
 }
