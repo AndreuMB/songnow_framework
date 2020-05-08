@@ -1,9 +1,9 @@
 <?php
 require 'autoload.php';
 require_once("paths.php");
+include(UTILS . "apis/apis.php"); // api mailgun
 // include(UTILS . "utils.inc.php");
 // include(UTILS . "common.inc.php");
-include(UTILS . "apis/apis.php"); // api mailgun
 // include(UTILS . "mail.inc.php");
 
 class router {

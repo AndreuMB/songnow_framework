@@ -3,7 +3,7 @@
 
         function list_songs(){
             require(VIEW_PATH_TOP . "top_" . $_GET['module'] . ".php");
-            require(VIEW_PATH_INC . "menu.php");
+            require(VIEW_PATH_INC . "menu.html");
             loadView(HTML_SONGS, 'songs.html');
             require(VIEW_PATH_INC . "footer.html");
         }

@@ -55,5 +55,14 @@
     define('JS_VIEW_SONGS', SITE_PATH . 'modules/songs/view/js/');
     define('HTML_SONGS', SITE_ROOT . 'modules/songs/view/');
 
+    //MODEL_LOGIN
+    define('UTILS_LOGIN', SITE_ROOT . 'modules/login/utils/');
+    define('MODEL_PATH_LOGIN', SITE_ROOT . 'modules/login/model/');
+    define('DAO_LOGIN', SITE_ROOT . 'modules/login/model/DAO/');
+    define('BLL_LOGIN', SITE_ROOT . 'modules/login/model/BLL/');
+    define('MODEL_LOGIN', SITE_ROOT . 'modules/login/model/model/');
+    define('JS_VIEW_LOGIN', SITE_PATH . 'modules/login/view/js/');
+    define('HTML_LOGIN', SITE_ROOT . 'modules/login/view/');
+
     //amigables
     define('URL_AMIGABLES', FALSE);

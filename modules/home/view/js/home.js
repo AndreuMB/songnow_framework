@@ -168,8 +168,12 @@ function api(){
     });
 }
 
+function account(id){
+    localStorage.setItem('account', id);
+    window.location.href = amigable("module=login");
+}
+
 $(document).ready(function () {
-    console.log("shome");
     carousel();
     categories();
     // api();
@@ -188,9 +192,9 @@ $(document).ready(function () {
         console.log(id);
         carousel_details(id);
     });
-    // $(document).on('click','.account',function () {
-    //     var id = this.getAttribute('id');
-    //     console.log(id);
-    //     account(id);
-    // });
+    $(document).on('click','.account',function () {
+        var id = this.getAttribute('id');
+        console.log(id);
+        account(id);
+    });
 });
