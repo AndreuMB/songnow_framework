@@ -159,30 +159,20 @@ $(document).ready(function () {
 		e.preventDefault();
             var data = $("#formlogin").serialize();
             console.log(data);
-            $.ajax({
-                type : 'GET',
-                url  : 'module/login/controller/controller_login.php?&op=login&' + data,
-            })
-            .done(function(data) {
+            g_promise(amigable("module=login&function=login"), data, false)
+            .then(function(data){
                 console.log(data);
                 if(data != "true"){
                     window.alert(data);
                 }else{
                     window.alert("Log in successfully");
-                    if(localStorage.getItem("buy") === null){
-                        console.log("CART NOT EXIST");
-                        window.location.href = 'index.php?page=controller_home&op=list';
-                    }else{
-                        console.log("CART EXIST");
-                        localStorage.removeItem("buy");
-                        window.location.href = 'index.php?page=controller_cart&op=list';
-                    }
+                    window.location.href = (amigable("module=home"));
                 }
 
             })
     });
     $(document).on('click','#register',function () {
         localStorage.setItem('account', "register_button");
-        window.location.href = 'index.php?page=controller_login&op=list';
+        window.location.href = (amigable("module=login"));
     });
 });

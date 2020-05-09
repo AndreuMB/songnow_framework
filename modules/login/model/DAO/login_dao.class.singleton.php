@@ -33,4 +33,9 @@ class login_dao {
         $sql = "UPDATE users SET active=1 WHERE token='$arrArgument'";
         return $db->ejecutar($sql);
     }
+    public function select_data_login($db,$arrArgument) {
+        $sql = "SELECT * FROM users WHERE idusers='$arrArgument'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
 }

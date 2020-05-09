@@ -23,5 +23,8 @@
 		public function obtain_data_activate_BLL($arrArgument){
 			return $this->dao->insert_data_activate($this->db,$arrArgument);
 		}
+		public function obtain_data_login_BLL($arrArgument){
+			return $this->dao->select_data_login($this->db,$arrArgument);
+		}
 
 	}

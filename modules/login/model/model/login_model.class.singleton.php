@@ -21,4 +21,7 @@ class login_model {
     public function activate($arrArgument){
         return $this->bll->obtain_data_activate_BLL($arrArgument);
     }
+    public function login($arrArgument){
+        return $this->bll->obtain_data_login_BLL($arrArgument);
+    }
 }

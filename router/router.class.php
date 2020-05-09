@@ -2,6 +2,7 @@
 require 'autoload.php';
 require_once("paths.php");
 include(UTILS . "apis/apis.php"); // api mailgun
+session_start();
 // include(UTILS . "utils.inc.php");
 // include(UTILS . "common.inc.php");
 // include(UTILS . "mail.inc.php");
@@ -29,7 +30,7 @@ class router {
     
     private function error404(){
         require_once(VIEW_PATH_INC . "header.php");
-        require_once(VIEW_PATH_INC . "menu.php");
+        require_once(VIEW_PATH_INC . "menu.html");
         require_once(VIEW_PATH_INC . "404.php");
         require_once(VIEW_PATH_INC . "footer.html"); 
     }

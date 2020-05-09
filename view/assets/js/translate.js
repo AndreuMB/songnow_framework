@@ -11,6 +11,7 @@ function lang(lang) {
       type: 'POST',
       dataType: 'JSON',
       success: function (data) {
+        console.log(data);
         for (var i = 0; i < allang.length; i++) {
           allang[i].innerHTML = data.hasOwnProperty(lang)
           ? data[lang][allang[i].dataset.tr]

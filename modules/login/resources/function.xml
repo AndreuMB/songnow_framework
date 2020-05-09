@@ -12,4 +12,16 @@
         <name>activate</name>
         <uri>activate</uri>
     </function>
+    <function>
+        <name>login</name>
+        <uri>login</uri>
+    </function>
+    <function>
+        <name>menu</name>
+        <uri>menu</uri>
+    </function>
+    <function>
+        <name>logout</name>
+        <uri>logout</uri>
+    </function>
 </functions>
