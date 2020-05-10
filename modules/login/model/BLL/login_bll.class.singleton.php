@@ -26,5 +26,11 @@
 		public function obtain_data_login_BLL($arrArgument){
 			return $this->dao->select_data_login($this->db,$arrArgument);
 		}
-
+		public function obtain_data_fpsswd_BLL($arrArgument){
+			return $this->dao->select_data_fpsswd($this->db,$arrArgument);
+		}
+		public function obtain_data_rpsswd_BLL($arrArgument){
+			return $this->dao->select_data_rpsswd($this->db,$arrArgument);
+		}
+		
 	}

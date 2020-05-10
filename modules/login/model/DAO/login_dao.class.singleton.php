@@ -38,4 +38,15 @@ class login_dao {
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
+    public function select_data_fpsswd($db,$arrArgument){
+        $sql = "SELECT * FROM users WHERE idusers='$arrArgument'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+    public function select_data_rpsswd($db,$arrArgument) {
+        $psswdhash =  password_hash($arrArgument['psswd'], PASSWORD_DEFAULT);
+        $sql = "UPDATE users SET psswd='$psswdhash' WHERE token='$arrArgument[token]'";
+        return $sql;
+        // return $db->ejecutar($sql);
+    }
 }

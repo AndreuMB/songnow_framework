@@ -35,6 +35,10 @@
     "Services" : "Services",
     "List songs" : "List songs",
     "Log out" : "Log out",
-    "Change lenguage:" : "Change lenguage:"
+    "Change lenguage:" : "Change lenguage:",
+    "Forget password?" : "Forget password?",
+    "Not have an account?" : "Not have an account?",
+    "Email" : "Email",
+    "Email not exist" : "Email not exist"
   }
 }

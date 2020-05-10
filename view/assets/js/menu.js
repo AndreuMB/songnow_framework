@@ -6,7 +6,6 @@ function lang(lang) {
     var allang = document.querySelectorAll('[data-tr]');
   
     $.ajax({
-        // url: '../../../view/langs/' + lang + '.json',
         url: '/songnow_framework/view/assets/langs/' + lang + '.json',
         type: 'POST',
         dataType: 'JSON',
@@ -38,35 +37,21 @@ function print_menu(){
             if (data.type=="client"){
                 menu_basic.push(
                     '<li><img src="'+data.avatar+'" alt="avatar" height="42" width="42"><a class="menu" href="#">'+data.username+'</a></li>',
-                    '<li><a class="menu" href="' + amigable("module=login&function=logout", true) +  '" data-tr="Log out"></a></li>'
+                    '<li><a class="menu" id="logout" href="' + amigable("module=login&function=logout", true) +  '" data-tr="Log out"></a></li>'
                 );
                 for (var i=0;i<menu_basic.length;i++){
                     menu=menu+menu_basic[i];
                 }                
                 console.log("menu_client");
-                // $("#menu").html(
-                //     '<nav id="nav">'+
-                //         '<ul>'+
-                //         menu+
-                //         '</ul>'+
-                //     '</nav>'
-                // )
             }else{
                 menu_basic.push(
                     '<li><img src="'+data.avatar+'" alt="avatar" height="42" width="42"><a class="menu" href="#">'+data.username+'</a></li>',
-                    '<li><a class="menu" href="' + amigable("module=login&function=logout", true) +  '" data-tr="Log out"></a></li>'
+                    '<li><a class="menu" id="logout" href="' + amigable("module=login&function=logout", true) +  '" data-tr="Log out"></a></li>'
                 );
                 for (var i=0;i<menu_basic.length;i++){
                     menu=menu+menu_basic[i];
                 }                
                 console.log("menu admin");
-                // $("#menu").html(
-                //     '<nav id="nav">'+
-                //         '<ul>'+
-                //         menu+ 
-                //         '</ul>'+
-                //     '</nav>'
-                // )
             }
 
         }else{
@@ -77,15 +62,7 @@ function print_menu(){
                 menu=menu+menu_basic[i];
             }
             console.log("menu_guest");
-            // $("#menu").html(
-            //     '<nav id="nav">'+
-            //         '<ul>'+
-            //         menu+
-            //         '</ul>'+
-            //     '</nav>'
-            // )
         }
-        console.log(menu);
         $("#menu").html(
             '<ul>'+
                 menu+
@@ -95,10 +72,32 @@ function print_menu(){
     })
 }
 
+function check_token(token){
+    console.log(token);
+
+    g_promise(amigable("module=login&function=check_token"), token)
+    .then(function(data){
+        console.log(data);
+        // if(data=="true"){
+
+        // }
+
+    })
+}
+
 $(document).ready(function() {
+    var token = localStorage.getItem("id_token")
+    console.log(token);
     console.log("menmu js");
+    if(token){
+        check_token(token);
+    }
     print_menu();
 
+    $(document).on('click','#logout',function () {
+        console.log("enter");
+        localStorage.removeItem('id_token');
+    })
     $("#btn-es").on("click", function(){
       lang('spanish');
     });
@@ -108,10 +107,4 @@ $(document).ready(function() {
     $("#btn-va").on("click", function(){
       lang('valencian');
     });
-    // $(document).on('click','.menu',function () {
-    // console.log("come here menu");
-    // var id = this.getAttribute('id');
-    // console.log(id);
-    // });
-
 });

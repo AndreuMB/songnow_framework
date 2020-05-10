@@ -24,4 +24,29 @@
         <name>logout</name>
         <uri>logout</uri>
     </function>
+    <function>
+        <name>token_login</name>
+        <uri>token_login</uri>
+    </function>
+    <function>
+        <name>check_token</name>
+        <uri>check_token</uri>
+    </function>
+    <function>
+        <name>fpsswd</name>
+        <uri>fpsswd</uri>
+    </function>
+    <function>
+        <name>epsswd</name>
+        <uri>epsswd</uri>
+    </function>
+    <function>
+        <name>cpsswd</name>
+        <uri>cpsswd</uri>
+    </function>
+    <function>
+        <name>rpsswd</name>
+        <uri>rpsswd</uri>
+    </function>
+    
 </functions>

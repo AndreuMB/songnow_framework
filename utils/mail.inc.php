@@ -28,6 +28,15 @@
                 $link='<a href="'.amigable('module=login&function=activate&token='.$arr['token'].'', true).'">link</a>';
                 $html = "Hello ".$arr['username']." thanks for register.<br>Click this  " . $link . " for activate account.<br><br>Return to the " . $ruta;
             break;
+
+            case 'psswd':
+                $address = $arr['email'];
+                $subject = 'Change psswd';
+                $ruta = '<a href="'.amigable('module=home', true).'">web</a>';
+                $link='<a href="'.amigable('module=login&function=cpsswd&token='.$arr['token'].'', true).'">link</a>';
+                $html = "Hello ".$arr['username'].".<br>Click this  " . $link . " for change your password.<br><br>Return to the " . $ruta;
+            break;
+
         }
         $html .= "<br><br><b>Sent by SONGNOW</b>";
         $result = send_mailgun('songnow@gmail.com', $address, $subject, $html);

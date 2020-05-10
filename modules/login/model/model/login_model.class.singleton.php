@@ -24,4 +24,12 @@ class login_model {
     public function login($arrArgument){
         return $this->bll->obtain_data_login_BLL($arrArgument);
     }
+    public function fpsswd($arrArgument){
+        return $this->bll->obtain_data_fpsswd_BLL($arrArgument);
+    }
+    public function rpsswd($arrArgument){
+        return $this->bll->obtain_data_rpsswd_BLL($arrArgument);
+    }
+    
+    
 }

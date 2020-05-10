@@ -35,6 +35,10 @@
         "Services" : "Serveis",
         "List songs" : "Llista de cançons",
         "Log out" : "Tancar sessió",
-        "Change lenguage:" : "Cambiar idioma:"
+        "Change lenguage:" : "Cambiar idioma:",
+        "Forget password?" : "Has olvidat la contrasenya?",
+        "Not have an account?" : "No tens un compte?",
+        "Email" : "Correu electronic",
+        "Email not exist" : "El correu electronic no existeix"
     }
 }

@@ -118,28 +118,57 @@ function login(){
                         '<input type="submit" class="loginbtn" value="Login"/>'+
                     '</div>'+
                     '</form>'+
-                '<p>Not have an account? <a id="register" href="'+amigable("module=login")+'">Register</a>.</p>'+
+                '<span data-tr="Not have an account?"/> <a id="register" href="'+amigable("module=login")+'">Register</a>.<br>'+
+                '<span data-tr="Forget password?"/><a id="fpsswd" href="'+amigable("module=login")+'">Click here</a>.'+
             '</div>'+
         '</div>'
     )
 }
 
-function load(){
+function fpsswd(){
+    console.log("recover");
+    $('#login').empty();
+    $("#login").html(
+        '<div class="row">'+
+            '<div class="col-12 col-12-medium">'+
+                '<form method="post" id="formpsswd">'+
+                    '<div class="login">'+
+                        '<h1>Login</h1>'+
+                        '<label for="username"><b>Username</b></label>'+
+                        '<input type="text" placeholder="Enter username" name="username" id="username" required>'+
+                        '<p class="error" id="e_username"></p>'+
+                        '<hr>'+
+                        '<input type="submit" class="psswdbtn" value="Send"/>'+
+                    '</div>'+
+                    '</form>'+
+            '</div>'+
+        '</div>'
+    )
+}
 
+
+function load(){
     var account = localStorage.getItem('account');
     console.log(account);
     if (account=="register_button"){
         localStorage.removeItem('account');
         register();
+    }else if(account=="fpsswd"){
+        localStorage.removeItem('account');
+        fpsswd();
     }else{
         localStorage.removeItem('account');
         login()
     }
+    // var url = window.location.href;
+    // console.log(url);
 }
 
 $(document).ready(function () {
     console.log("login");
     load();
+    // viewpsswd();
+
     $("#formregister").submit(function (e) {
 		e.preventDefault();
 		if(validationR() != 0){
@@ -155,24 +184,76 @@ $(document).ready(function () {
             })
         }
     });
+    $("#formcpsswd").submit(function (e) {
+        console.log("submit frompc");
+		e.preventDefault();
+		if(validationC() != 0){
+        //     var data = $("#formregister").serialize();
+        //     console.log(data);
+        //     // g_promise(amigable("module=login&function=register"), data, false)
+        //     // .then(function(data){
+        //     //     console.log(data);
+        //     //     window.alert("We send you an email for activate account");
+        //     //     window.location.href = (amigable("module=login"));
+        //     // }).catch(function(){
+        //     //     document.getElementById('e_username').innerHTML = "The introduced name exist";
+        //     // })
+        // }else{
+        //     window.alert("Check the data");
+        }
+    });
     $("#formlogin").submit(function (e) {
 		e.preventDefault();
             var data = $("#formlogin").serialize();
             console.log(data);
+            username0=data.split("=", 2);
+            username1=username0[1].split("&", 1);
+            console.log(username1[0]);
+
             g_promise(amigable("module=login&function=login"), data, false)
             .then(function(data){
                 console.log(data);
                 if(data != "true"){
                     window.alert(data);
                 }else{
-                    window.alert("Log in successfully");
-                    window.location.href = (amigable("module=home"));
+                    g_promise(amigable("module=login&function=token_login"), username1[0])
+                    .then(function(data){
+                        console.log(data);
+                        localStorage.setItem('id_token', data);
+                        window.alert("Log in successfully");
+                        window.location.href = (amigable("module=home"));
+                    })
                 }
 
             })
     });
+    $("#formpsswd").submit(function (e) {
+		e.preventDefault();
+            var data = $("#formpsswd").serialize();
+            g_promise(amigable("module=login&function=fpsswd"), data, false)
+            .then(function(data){
+                console.log(data);
+               
+                g_promise(amigable("module=login&function=epsswd"), data)
+                .then(function(data){
+                    console.log(data);
+                    window.alert("We send you an email recover");
+                    check=true;
+                    window.location.href = (amigable("module=login"));
+                })
+
+            }).catch(function(){
+                console.log("error");
+                $('#e_username').empty();
+                $( '<span>Username not exist</span>' ).appendTo( "#e_username" );
+            })
+    });
     $(document).on('click','#register',function () {
         localStorage.setItem('account', "register_button");
+        window.location.href = (amigable("module=login"));
+    });
+    $(document).on('click','#fpsswd',function () {
+        localStorage.setItem('account', "fpsswd");
         window.location.href = (amigable("module=login"));
     });
 });
