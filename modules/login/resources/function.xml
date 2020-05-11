@@ -48,5 +48,9 @@
         <name>rpsswd</name>
         <uri>rpsswd</uri>
     </function>
+    <function>
+        <name>login_a</name>
+        <uri>login_a</uri>
+    </function>
     
 </functions>

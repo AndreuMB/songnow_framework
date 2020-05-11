@@ -23,7 +23,8 @@ function lang(lang) {
 
 function print_menu(){
     console.log("print_menu");
-    g_promise(amigable("module=login&function=menu"))
+    token=localStorage.getItem("token_data")
+    g_promise(amigable("module=login&function=menu"), token)
     .then(function(data){
         console.log("data menu");
         console.log(data)
@@ -77,10 +78,15 @@ function check_token(token){
 
     g_promise(amigable("module=login&function=check_token"), token)
     .then(function(data){
-        console.log(data);
-        // if(data=="true"){
-
-        // }
+        console.log("data= " + data);
+        if(data=="true"){
+            print_menu();
+        }
+        else{
+            console.log("token not same");
+            localStorage.removeItem("id_token");
+            window.location.href = amigable("module=login&function=logout");
+        }
 
     })
 }
@@ -91,12 +97,16 @@ $(document).ready(function() {
     console.log("menmu js");
     if(token){
         check_token(token);
+    }else{
+        print_menu();
     }
-    print_menu();
+    // print_menu();
+
 
     $(document).on('click','#logout',function () {
         console.log("enter");
         localStorage.removeItem('id_token');
+        localStorage.removeItem('token_data');
     })
     $("#btn-es").on("click", function(){
       lang('spanish');

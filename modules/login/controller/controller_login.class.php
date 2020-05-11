@@ -55,6 +55,16 @@
                 }
             }
         }
+
+        function login_a(){
+            $result=loadModel(MODEL_LOGIN, "login_model", "login_a", $_POST['p_data']);
+            $token=encode_token($_POST['p_data']['sub']);
+            // $_SESSION['username'] = $_POST['p_data']['nickname'];
+            // $_SESSION['avatar'] = $_POST['p_data']['picture'];
+            // $_SESSION['type'] = "client";
+            echo json_encode($token);
+        }
+
         function menu(){
             if(isset($_SESSION['type'])){
                 $data = array(
@@ -62,6 +72,11 @@
                     "avatar"=>$_SESSION['avatar'],
                     "type"=>$_SESSION['type']
                 );
+                echo json_encode($data);
+            }elseif(!empty($_POST['p_data'])){
+                $token=decode_token($_POST['p_data']);
+                $name=json_decode($token)->name;
+                $data=loadModel(MODEL_LOGIN, "login_model", "id_user", $name);
                 echo json_encode($data);
             }else{
                 echo json_encode(null);
@@ -77,25 +92,22 @@
             $username=$_POST['p_data'];
             $token=encode_token($username);
             $_SESSION['token'] = $token;
+            $data = array (
+                "username" => $username,
+                "token" => $token
+            );
+            loadModel(MODEL_LOGIN, "login_model", "save_token", $data);
             echo json_encode($token);
         }
 
         function check_token(){
-            if($_SESSION['token']==$_POST['p_data']){
-                unset($_SESSION['token']);
-                $data=array(
-                    "result" => "true",
-                    "username" => $_SESSION['username']
-                );
-                echo json_encode("true");
+            // echo json_encode($_POST['p_data']);
+            $token=loadModel(MODEL_LOGIN, "login_model", "token", $_POST['p_data']);
+            if ($token){
+                 echo json_encode("true");
             }else{
-                $data=array(
-                    "result" => "false",
-                    "username" => $_SESSION['username']
-                );
-                echo json_encode($data);
+                echo json_encode("false");
             }
-
         }
         function fpsswd(){
             $exist=loadModel(MODEL_LOGIN, "login_model", "fpsswd", $_POST['username']);
@@ -130,8 +142,8 @@
                 "token" => $_SESSION['tokenp'],
                 "psswd" => $_POST['psswd'],
             );
-            $exist=loadModel(MODEL_LOGIN, "login_model", "rpsswd", $data);
-            echo json_encode($exist);
+            loadModel(MODEL_LOGIN, "login_model", "rpsswd", $data);
+            echo json_encode("done");
         }
     }
 ?>

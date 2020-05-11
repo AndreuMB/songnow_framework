@@ -8,7 +8,7 @@ $('document').ready(function() {
   var webAuth = new auth0.WebAuth({
     domain: 'dawv2.auth0.com',
     clientID: 'D6vc09qkv89eUBFBUDgCQD4jPkAoQ62v',
-    redirectUri: 'http://localhost/songnow_framework/tests/3_test_social_login/signin_Auth0/',
+    redirectUri: 'http://localhost/songnow_framework/tests/3_test_social_login/signin_Auth0/index.html',
     audience: 'https://' + 'dawv2.auth0.com' + '/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile email',

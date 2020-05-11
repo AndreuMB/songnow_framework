@@ -30,6 +30,18 @@ class login_model {
     public function rpsswd($arrArgument){
         return $this->bll->obtain_data_rpsswd_BLL($arrArgument);
     }
+    public function save_token($arrArgument){
+        return $this->bll->update_data_token_BLL($arrArgument);
+    }
+    public function token($arrArgument){
+        return $this->bll->obtain_data_token_BLL($arrArgument);
+    }
+    public function login_a($arrArgument){
+        return $this->bll->obtain_data_login_a_BLL($arrArgument);
+    }
+    public function id_user($arrArgument){
+        return $this->bll->obtain_data_id_user_a_BLL($arrArgument);
+    }
     
     
 }

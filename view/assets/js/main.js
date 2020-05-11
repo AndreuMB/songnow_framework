@@ -64,7 +64,7 @@
 })(jQuery);
 
 function amigable(url) {
-	var switich = false;
+	var switich = true;
 	if (switich){
 		var link="";
 		url = url.replace("?", "");

@@ -32,5 +32,17 @@
 		public function obtain_data_rpsswd_BLL($arrArgument){
 			return $this->dao->select_data_rpsswd($this->db,$arrArgument);
 		}
+		public function update_data_token_BLL($arrArgument){
+			return $this->dao->update_data_token($this->db,$arrArgument);
+		}
+		public function obtain_data_token_BLL($arrArgument){
+			return $this->dao->select_data_token($this->db,$arrArgument);
+		}
+		public function obtain_data_login_a_BLL($arrArgument){
+			return $this->dao->select_data_login_a($this->db,$arrArgument);
+		}
+		public function obtain_data_id_user_a_BLL($arrArgument){
+			return $this->dao->select_id_user_login_a($this->db,$arrArgument);
+		}
 		
 	}

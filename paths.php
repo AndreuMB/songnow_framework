@@ -65,4 +65,4 @@
     define('HTML_LOGIN', SITE_ROOT . 'modules/login/view/');
 
     //amigables
-    define('URL_AMIGABLES', FALSE);
+    define('URL_AMIGABLES', TRUE);
