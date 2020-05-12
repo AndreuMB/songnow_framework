@@ -19,7 +19,7 @@
         <script src="/songnow_framework/view/assets/js/menu.js"></script>
         <script src="/songnow_framework/view/assets/js/translate.js"></script>
         <script src="/songnow_framework/view/assets/bootpag/jquery.bootpag.min.js"></script>
-        <script src="/songnow_framework/utils/apis/apis.inc.js"></script>
+        <script src="/songnow_framework/utils/apis/apis.js"></script>
         
         
 

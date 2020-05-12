@@ -58,8 +58,8 @@ class login_dao {
         return $db->listar($stmt);
     }
     public function select_data_login_a($db,$arrArgument) {
-        $sql = "INSERT INTO users (idusers, username, email, avatar)
-        VALUES ( '$arrArgument[sub]', '$arrArgument[nickname]','$arrArgument[email]', '$arrArgument[picture]');";
+        $sql = "INSERT INTO users (idusers, username, email, avatar, active)
+        VALUES ( '$arrArgument[id]', '$arrArgument[user]','$arrArgument[email]', '$arrArgument[img]', 1);";
         return $db->ejecutar($sql);
     }
     public function select_id_user_login_a($db,$arrArgument) {

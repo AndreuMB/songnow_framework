@@ -58,10 +58,7 @@
 
         function login_a(){
             $result=loadModel(MODEL_LOGIN, "login_model", "login_a", $_POST['p_data']);
-            $token=encode_token($_POST['p_data']['sub']);
-            // $_SESSION['username'] = $_POST['p_data']['nickname'];
-            // $_SESSION['avatar'] = $_POST['p_data']['picture'];
-            // $_SESSION['type'] = "client";
+            $token=encode_token($_POST['p_data']['id']);
             echo json_encode($token);
         }
 
