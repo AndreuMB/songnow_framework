@@ -40,4 +40,8 @@
         <name>load</name>
         <uri>load</uri>
     </function>
+    <function>
+        <name>likes</name>
+        <uri>likes</uri>
+    </function>   
 </functions>

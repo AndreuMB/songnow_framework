@@ -54,8 +54,23 @@ class songs_dao {
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
-
-    
+    public function select_data_likes($db,$arrArgument) {
+        $sql = "SELECT * FROM likes WHERE idusers='$arrArgument[0]' AND idsongs='$arrArgument[1]'";
+        $stmt = $db->ejecutar($sql);
+        $result = $db->listar($stmt);
+        if ($result){
+            $sql = "DELETE FROM likes WHERE idusers='$arrArgument[0]' AND idsongs='$arrArgument[1]'";
+            return $db->ejecutar($sql);
+        }else{
+            $sql = "INSERT INTO likes (idusers, idsongs) VALUES ('$arrArgument[0]', '$arrArgument[1]')";
+            return $db->ejecutar($sql);
+        }
+    }
+    public function select_data_fav($db,$arrArgument) {
+        $sql = "SELECT * FROM likes WHERE idusers='$arrArgument[0]'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
     
     
 }

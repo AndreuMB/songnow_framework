@@ -1,9 +1,9 @@
 <?php
-    function amigable($url, $return = false) {
+    function amigable($url, $return = false, $switich = true) {
         $amigableson = URL_AMIGABLES;
         $link = "";
         $count = 0;
-        if ($amigableson) {
+        if ($amigableson && $switich) {
             $url = explode("&", str_replace("?", "", $url));
             foreach ($url as $key => $value) {
                 $aux = explode("=", $value);

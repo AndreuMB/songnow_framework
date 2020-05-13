@@ -43,4 +43,10 @@
 		public function obtain_data_cat_BLL($arrArgument){
 			return $this->dao->select_data_cat($this->db,$arrArgument);
 		}
+		public function obtain_data_likes_BLL($arrArgument){
+			return $this->dao->select_data_likes($this->db,$arrArgument);
+		}
+		public function obtain_data_fav_BLL($arrArgument){
+			return $this->dao->select_data_fav($this->db,$arrArgument);
+		}
 	}

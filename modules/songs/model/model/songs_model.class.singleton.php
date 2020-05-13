@@ -40,4 +40,11 @@ class songs_model {
     public function cat($arrArgument){
         return $this->bll->obtain_data_cat_BLL($arrArgument);
     }
+    public function likes($arrArgument){
+        return $this->bll->obtain_data_likes_BLL($arrArgument);
+    }
+    public function fav($arrArgument){
+        return $this->bll->obtain_data_fav_BLL($arrArgument);
+    }
+    
 }

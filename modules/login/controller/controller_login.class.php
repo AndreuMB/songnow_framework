@@ -43,10 +43,12 @@
             }else{
                 if (password_verify($_POST['psswd'],$user[0]['psswd'])) {
                     if ($user[0]['active']=="1"){
-                        $_SESSION['username'] = $user[0]['username'];
-                        $_SESSION['avatar'] = $user[0]['avatar'];
-                        $_SESSION['type'] = $user[0]['type'];
-                        echo json_encode("true");
+                        $token=encode_token($user[0]['idusers']);
+                        $data = array(
+                            "work" => "true",
+                            "token" => $token
+                        );
+                        echo json_encode($data);
                     }else{
                         echo json_encode("first activate your account");
                     }

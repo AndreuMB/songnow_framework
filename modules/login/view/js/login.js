@@ -194,16 +194,18 @@ function fomrs(){
             g_promise(amigable("module=login&function=login"), data, false)
             .then(function(data){
                 console.log(data);
-                if(data != "true"){
+                if(data['work'] != "true"){
                     window.alert(data);
                 }else{
-                    g_promise(amigable("module=login&function=token_login"), username1[0])
-                    .then(function(data){
-                        console.log(data);
-                        localStorage.setItem('id_token', data);
-                        window.alert("Log in successfully");
-                        window.location.href = (amigable("module=home"));
-                    })
+                    localStorage.setItem('token_data', data['token']);
+                    window.location.href = (amigable("module=home"));
+                    // g_promise(amigable("module=login&function=token_login"), username1[0])
+                    // .then(function(data){
+                    //     console.log(data);
+                    //     localStorage.setItem('id_token', data);
+                    //     window.alert("Log in successfully");
+                    //     window.location.href = (amigable("module=home"));
+                    // })
                 }
 
             })

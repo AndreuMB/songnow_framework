@@ -25,7 +25,7 @@
                 $address = $arr['email'];
                 $subject = 'Activate account';
                 $ruta = '<a href="'.amigable('module=home', true).'">web</a>';
-                $link='<a href="'.amigable('module=login&function=activate&token='.$arr['token'].'', true).'">link</a>';
+                $link='<a href="'.amigable('module=login&function=activate&token='.$arr['token'].'', true, false).'">link</a>';
                 $html = "Hello ".$arr['username']." thanks for register.<br>Click this  " . $link . " for activate account.<br><br>Return to the " . $ruta;
             break;
 
@@ -33,7 +33,7 @@
                 $address = $arr['email'];
                 $subject = 'Change psswd';
                 $ruta = '<a href="'.amigable('module=home', true).'">web</a>';
-                $link='<a href="'.amigable('module=login&function=cpsswd&token='.$arr['token'].'', true).'">link</a>';
+                $link='<a href="'.amigable('module=login&function=cpsswd&token='.$arr['token'].'', true, false).'">link</a>';
                 $html = "Hello ".$arr['username'].".<br>Click this  " . $link . " for change your password.<br><br>Return to the " . $ruta;
             break;
 

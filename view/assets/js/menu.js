@@ -25,18 +25,18 @@ function print_menu(){
     console.log("print_menu");
     token=localStorage.getItem("token_data")
     g_promise(amigable("module=login&function=menu"), token)
-    .then(function(data){
-        console.log("menu_user", data);
+    .then(function(user){
+        console.log("menu_user", user);
         var menu_basic= [
         '<li><a class="menu" href="' + amigable("module=home") +  '" data-tr="Home"></a></li>'+
         '<li><a class="menu" href="' + amigable("module=songs") +  '"data-tr="Songs"></a></li>'+
         '<li><a class="menu" href="' + amigable("module=contact") +  '" data-tr="Contact us"></a></li>'
         ];
         var menu="";
-        if (data != null){
-            if (data[0].type=="client"){
+        if (user != null){
+            if (user[0].type=="client"){
                 menu_basic.push(
-                    '<li><img src="'+data[0].avatar+'" alt="avatar" height="42" width="42"><a class="menu" href="#">'+data[0].username+'</a></li>',
+                    '<li><img src="'+user[0].avatar+'" alt="avatar" height="42" width="42"><a class="menu" href="#">'+user[0].username+'</a></li>',
                     '<li><a class="menu" id="logout" href="' + amigable("module=login&function=logout", true) +  '" data-tr="Log out"></a></li>'
                 );
                 for (var i=0;i<menu_basic.length;i++){
@@ -45,7 +45,7 @@ function print_menu(){
                 console.log("menu_client");
             }else{
                 menu_basic.push(
-                    '<li><img src="'+data[0].avatar+'" alt="avatar" height="42" width="42"><a class="menu" href="#">'+data[0].username+'</a></li>',
+                    '<li><img src="'+user[0].avatar+'" alt="avatar" height="42" width="42"><a class="menu" href="#">'+user[0].username+'</a></li>',
                     '<li><a class="menu" id="logout" href="' + amigable("module=login&function=logout", true) +  '" data-tr="Log out"></a></li>'
                 );
                 for (var i=0;i<menu_basic.length;i++){

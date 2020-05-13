@@ -10,8 +10,7 @@ function pagination(){
         if ((data[0].tsongs%show_songs) !== 0){
             total_pages=total_pages+1;
         }
-        var sql = "SELECT * FROM songs";
-        pages(0, show_songs, sql);
+        pages(0);
         $("#pagination").bootpag({
             total: total_pages,
             page: num_page,
@@ -21,51 +20,107 @@ function pagination(){
         }).on("page", function (e, num) {
             console.log(num-1);
             num = num-1;
-            pages(num, show_songs, sql);
+            pages(num);
             num_page=num;
         });
     })
 }
 
-function pages(page_now, show_songs, sql){
+function pages(page_now){
     console.log("page_now= " + page_now);
-    // console.log("show_songs= " + show_songs);
+    token=localStorage.getItem("token_data")
+    if (token){
+    g_promise(amigable("module=login&function=menu"), token)
+    .then(function(user){
+        user=[user[0]['idusers']]
+        console.log(user);
+        data=[page_now, user];
 
-    g_promise(amigable("module=songs&function=page"), page_now)
+    g_promise(amigable("module=songs&function=page"), data)
     .then(function(data){
-        console.log("songs in this page= ");
-        console.log(data);
-        console.log(data.length);
+        console.log("songs in this page" , data);
         $('#songs').empty();
-    
         var songs="";
+        var token = localStorage.getItem("token_data");
+        
+            console.log("fav");
+            for(var i=0;i<data['songs'].length;i++){
+                if(data['favs'].indexOf(data['songs'][i].id_song)){
+                    fav= '<td><i id="'+ data['songs'][i].id_song +'" class="far fa-heart favorite like"></i></td>'
+                }else{
+                    fav= '<td><i id="'+ data['songs'][i].id_song +'" class="far fa-heart favorite"></i></td>'
+                }
 
-        for(var i=0;i<data.length;i++){
-            songs=songs+
-            '<tr class="song" id=' + data[i].id_song + '>'+
-                '<td>' + data[i].song_name + '</td>'+
-                '<td>' + data[i].singer + '</td>'+
-                '<td>' + data[i].album + '</td>'+
-                '<td>' + data[i].duration + '</td>'+
-            '</tr>'
-        }
-        console.log(songs);
-        $("#songs").html(
-            '<div class="map">'+
-            '<img src="/songnow_framework/view/img/map.png" alt="map" id=map_img style="width:100%;">'+
-            '<div class="centered" data-tr="See map"></div>'+
-            '</div>'+
-            '<table>'+
-            '<tr>'+
-            '<th>TITLE</th>'+
-            '<th>ARTIST</th>'+
-            '<th>ALBUM</th>'+
-            '<th>DURATION</th>'+
-            '</tr>'+
-            songs+
-            '</table>'
-        )
+                console.log(data['favs']);
+                console.log(data['songs'][i].id_song);
+                for(var x=0;x<data['favs'].length;x++){
+                    if(data['favs'][x]['idsongs']==data['songs'][i].id_song){
+                        fav= '<td><i id="'+ data['songs'][i].id_song +'" class="far fa-heart favorite like"></i></td>'
+                        break;
+                    }else{
+                        fav= '<td><i id="'+ data['songs'][i].id_song +'" class="far fa-heart favorite"></i></td>'
+                    }
+                }
+
+                songs=songs+
+                '<tr class="song" id=' + data['songs'][i].id_song + '>'+
+                    '<td>' + data['songs'][i].song_name + '</td>'+
+                    '<td>' + data['songs'][i].singer + '</td>'+
+                    '<td>' + data['songs'][i].album + '</td>'+
+                    '<td>' + data['songs'][i].duration + '</td>'+
+                    fav+
+                '</tr>'
+            }
+            // console.log(songs);
+            $("#songs").html(
+                '<div class="map">'+
+                '<img src="/songnow_framework/view/img/map.png" alt="map" id=map_img style="width:100%;">'+
+                '<div class="centered" data-tr="See map"></div>'+
+                '</div>'+
+                '<table>'+
+                '<tr>'+
+                '<th>TITLE</th>'+
+                '<th>ARTIST</th>'+
+                '<th>ALBUM</th>'+
+                '<th>DURATION</th>'+
+                '</tr>'+
+                songs+
+                '</table>'
+            )
+
     });
+    });
+    }else{
+        var songs="";
+        g_promise(amigable("module=songs&function=page"), page_now)
+        .then(function(data){
+            console.log("notlog", data);
+            for(var i=0;i<data.length;i++){
+                songs=songs+
+                '<tr class="song" id=' + data[i].id_song + '>'+
+                    '<td>' + data[i].song_name + '</td>'+
+                    '<td>' + data[i].singer + '</td>'+
+                    '<td>' + data[i].album + '</td>'+
+                    '<td>' + data[i].duration + '</td>'+
+                '</tr>'
+            }
+            $("#songs").html(
+                '<div class="map">'+
+                '<img src="/songnow_framework/view/img/map.png" alt="map" id=map_img style="width:100%;">'+
+                '<div class="centered" data-tr="See map"></div>'+
+                '</div>'+
+                '<table>'+
+                '<tr>'+
+                '<th>TITLE</th>'+
+                '<th>ARTIST</th>'+
+                '<th>ALBUM</th>'+
+                '<th>DURATION</th>'+
+                '</tr>'+
+                songs+
+                '</table>'
+            )
+        })
+}
 }
 
 function sum_view(id){
@@ -326,10 +381,28 @@ function ajaxForSearch(durl, data) {
      })
     }
 
+    function likes(id){
+        console.log("page_Fav")
+        token=localStorage.getItem("token_data")
+        g_promise(amigable("module=login&function=menu"), token)
+        .then(function(user){
+            data=[user[0]['idusers'], id]
+            console.log(data);
+            g_promise(amigable("module=songs&function=likes"), data)
+            .then(function(data){
+                console.log(data);
+                load();
+            })
+        })
+    }
+
 $(document).ready(function () {
     console.log("songs");
+    var page_now=0
+    console.log("page", page_now);
     load();
     filter();
+
     $('.songs_page').on('click','.song',function (e) {
         console.log(e.target);
         if (!$(e.target).is('.favorite')){
@@ -345,6 +418,12 @@ $(document).ready(function () {
         script.async;
         script.defer;
         document.getElementsByTagName('script')[0].parentNode.appendChild(script);
+    });
+
+    $('.songs_page').on('click','.favorite',function () {
+        var id = this.getAttribute('id');
+        console.log("fav");
+        likes(id);
     });
 
 })
