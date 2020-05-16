@@ -30,6 +30,8 @@ function print_menu(){
         var menu_basic= [
         '<li><a class="menu" href="' + amigable("module=home") +  '" data-tr="Home"></a></li>'+
         '<li><a class="menu" href="' + amigable("module=songs") +  '"data-tr="Songs"></a></li>'+
+        '<li><a class="menu" href="' + amigable("module=shop") +  '"data-tr="Shop"></a></li>'+
+        '<li><a class="menu fas fa-shopping-cart" href="' + amigable("module=cart") +  '"></a></li>'+
         '<li><a class="menu" href="' + amigable("module=contact") +  '" data-tr="Contact us"></a></li>'
         ];
         var menu="";
@@ -84,6 +86,8 @@ function check_token(token){
         else{
             console.log("token not same");
             localStorage.removeItem("id_token");
+            localStorage.removeItem('buy');
+            localStorage.removeItem("cart");
             window.location.href = amigable("module=login&function=logout");
         }
 
@@ -105,6 +109,8 @@ $(document).ready(function() {
     $(document).on('click','#logout',function () {
         console.log("enter");
         localStorage.removeItem('id_token');
+        localStorage.removeItem('buy');
+        localStorage.removeItem("cart");
         localStorage.removeItem('token_data');
     })
     $("#btn-es").on("click", function(){

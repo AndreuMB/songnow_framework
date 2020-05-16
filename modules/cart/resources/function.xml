@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>list_cart</name>
+        <uri>list_cart</uri>
+    </function>
+    <function>
+        <name>products</name>
+        <uri>products</uri>
+    </function>
+    <function>
+        <name>read</name>
+        <uri>read</uri>
+    </function>
+    <function>
+        <name>id_purchase</name>
+        <uri>id_purchase</uri>
+    </function>
+    <function>
+        <name>buy</name>
+        <uri>buy</uri>
+    </function>
+</functions>

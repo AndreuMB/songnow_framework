@@ -198,14 +198,13 @@ function fomrs(){
                     window.alert(data);
                 }else{
                     localStorage.setItem('token_data', data['token']);
-                    window.location.href = (amigable("module=home"));
-                    // g_promise(amigable("module=login&function=token_login"), username1[0])
-                    // .then(function(data){
-                    //     console.log(data);
-                    //     localStorage.setItem('id_token', data);
-                    //     window.alert("Log in successfully");
-                    //     window.location.href = (amigable("module=home"));
-                    // })
+                    window.alert("Log in successfully");
+                    buy=localStorage.getItem("buy")
+                    if (!buy){
+                        window.location.href = (amigable("module=home"));
+                    }else{
+                        window.location.href = (amigable("module=cart"));
+                    }
                 }
 
             })

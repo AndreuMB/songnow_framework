@@ -38,31 +38,30 @@
     define('UTILS', SITE_ROOT . 'utils/');
     
     //MODEL_HOME
-    define('UTILS_HOME', SITE_ROOT . 'modules/home/utils/');
-    define('MODEL_PATH_HOME', SITE_ROOT . 'modules/home/model/');
-    define('DAO_HOME', SITE_ROOT . 'modules/home/model/DAO/');
-    define('BLL_HOME', SITE_ROOT . 'modules/home/model/BLL/');
-    define('MODEL_HOME', SITE_ROOT . 'modules/home/model/model/');
-    define('JS_VIEW_HOME', SITE_PATH . 'modules/home/view/js/');
-    define('HTML_HOME', SITE_ROOT . 'modules/home/view/');
+    pattern ("HOME", "home");
 
     //MODEL_SONGS
-    define('UTILS_SONGS', SITE_ROOT . 'modules/songs/utils/');
-    define('MODEL_PATH_SONGS', SITE_ROOT . 'modules/songs/model/');
-    define('DAO_SONGS', SITE_ROOT . 'modules/songs/model/DAO/');
-    define('BLL_SONGS', SITE_ROOT . 'modules/songs/model/BLL/');
-    define('MODEL_SONGS', SITE_ROOT . 'modules/songs/model/model/');
-    define('JS_VIEW_SONGS', SITE_PATH . 'modules/songs/view/js/');
-    define('HTML_SONGS', SITE_ROOT . 'modules/songs/view/');
+    pattern ("SONGS", "songs");
 
     //MODEL_LOGIN
-    define('UTILS_LOGIN', SITE_ROOT . 'modules/login/utils/');
-    define('MODEL_PATH_LOGIN', SITE_ROOT . 'modules/login/model/');
-    define('DAO_LOGIN', SITE_ROOT . 'modules/login/model/DAO/');
-    define('BLL_LOGIN', SITE_ROOT . 'modules/login/model/BLL/');
-    define('MODEL_LOGIN', SITE_ROOT . 'modules/login/model/model/');
-    define('JS_VIEW_LOGIN', SITE_PATH . 'modules/login/view/js/');
-    define('HTML_LOGIN', SITE_ROOT . 'modules/login/view/');
+    pattern ("LOGIN", "login");
 
-    //amigables
+    //MODEL_SHOP
+    pattern ("SHOP", "shop");
+
+    //MODEL_CART
+    pattern ("CART", "cart");
+
+    //PATTERN
+    function pattern ($module_M, $module_m){
+        define('UTILS_' . $module_M, SITE_ROOT . 'modules/' . $module_m . '/utils/');
+        define('MODEL_PATH_' . $module_M, SITE_ROOT . 'modules/' . $module_m . '/model/');
+        define('DAO_' . $module_M, SITE_ROOT . 'modules/' . $module_m . '/model/DAO/');
+        define('BLL_' . $module_M, SITE_ROOT . 'modules/' . $module_m . '/model/BLL/');
+        define('MODEL_' . $module_M, SITE_ROOT . 'modules/' . $module_m . '/model/model/');
+        define('JS_VIEW_' . $module_M, SITE_PATH . 'modules/' . $module_m . '/view/js/');
+        define('HTML_' . $module_M, SITE_ROOT . 'modules/' . $module_m . '/view/');
+    }
+
+    //FRIENDLY
     define('URL_AMIGABLES', TRUE);

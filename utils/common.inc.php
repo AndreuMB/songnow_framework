@@ -11,7 +11,7 @@
             if (!method_exists($modelClass, $function)){
                 throw new Exception();
             }
-            
+
             $obj = $modelClass::getInstance();
 
             // return $obj;
