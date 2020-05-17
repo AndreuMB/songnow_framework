@@ -72,14 +72,19 @@ $(document).ready(function () {
     $("#formcpsswd").submit(function (e) {
 		e.preventDefault();
 		if(validationC() != 0){
-            // console.log("eneter");
+            console.log("eneter");
             var data = $("#formcpsswd").serialize();
             console.log(data);
             g_promise(amigable("module=login&function=rpsswd"), data, false)
             .then(function(data){
                 console.log(data);
+                console.log(data + "idusers");
                 window.alert("We change your password");
-                window.location.href = (amigable("module=login"));
+                if(data=="idusers"){
+                    window.location.href = (amigable("module=profile"));
+                }else{
+                    window.location.href = (amigable("module=login"));
+                }
             })
         }
     });

@@ -52,6 +52,9 @@
     //MODEL_CART
     pattern ("CART", "cart");
 
+    //MODEL_PROFILE
+    pattern ("PROFILE", "profile");
+
     //PATTERN
     function pattern ($module_M, $module_m){
         define('UTILS_' . $module_M, SITE_ROOT . 'modules/' . $module_m . '/utils/');

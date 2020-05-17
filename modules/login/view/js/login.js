@@ -220,7 +220,6 @@ function fomrs(){
                 .then(function(data){
                     console.log(data);
                     window.alert("We send you an email recover");
-                    check=true;
                     window.location.href = (amigable("module=login"));
                 })
 

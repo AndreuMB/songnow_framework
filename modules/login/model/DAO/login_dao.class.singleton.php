@@ -45,7 +45,11 @@ class login_dao {
     }
     public function select_data_rpsswd($db,$arrArgument) {
         $psswdhash =  password_hash($arrArgument['psswd'], PASSWORD_DEFAULT);
-        $sql = "UPDATE users SET psswd='$psswdhash' WHERE token='$arrArgument[token]'";
+        if(isset($arrArgument['token'])){
+            $sql = "UPDATE users SET psswd='$psswdhash' WHERE token='$arrArgument[token]'";
+        }else{
+            $sql = "UPDATE users SET psswd='$psswdhash' WHERE idusers='$arrArgument[idusers]'";
+        }
         return $db->ejecutar($sql);
     }
     public function update_data_token($db,$arrArgument) {

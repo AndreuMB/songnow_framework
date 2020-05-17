@@ -130,19 +130,38 @@
             echo json_encode("done");
         }
         function cpsswd(){
-            $_SESSION['tokenp']=$_GET['token'];
-            require(VIEW_PATH_TOP . "top_rpsswd.html");
-            require(VIEW_PATH_INC . "menu.html");
-            loadView(HTML_LOGIN,  $_GET['module'] . '.html');
-            require(VIEW_PATH_INC . "footer.html");
+            if (isset($_GET['token'])){
+                $_SESSION['tokenp']=$_GET['token'];
+                require(VIEW_PATH_TOP . "top_rpsswd.html");
+                require(VIEW_PATH_INC . "menu.html");
+                loadView(HTML_LOGIN,  $_GET['module'] . '.html');
+                require(VIEW_PATH_INC . "footer.html");
+            }else{
+                $_SESSION['idusers']=$_GET['idusers'];
+                require(VIEW_PATH_TOP . "top_rpsswd.html");
+                require(VIEW_PATH_INC . "menu.html");
+                loadView(HTML_LOGIN,  $_GET['module'] . '.html');
+                require(VIEW_PATH_INC . "footer.html");
+            }
+
         }
         function rpsswd(){
-            $data = array(
-                "token" => $_SESSION['tokenp'],
-                "psswd" => $_POST['psswd'],
-            );
+            if (!isset($_SESSION['tokenp'])){
+                $data = array(
+                    "idusers" => $_SESSION['idusers'],
+                    "psswd" => $_POST['psswd'],
+                );
+                $return="idusers";
+            }else{
+                $data = array(
+                    "token" => $_SESSION['tokenp'],
+                    "psswd" => $_POST['psswd'],
+                );
+                $return="token";
+            }
+
             loadModel(MODEL_LOGIN, "login_model", "rpsswd", $data);
-            echo json_encode("done");
+            echo json_encode($return);
         }
     }
 ?>

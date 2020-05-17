@@ -38,7 +38,7 @@ function print_menu(){
         if (user != null){
             if (user[0].type=="client"){
                 menu_basic.push(
-                    '<li><img src="'+user[0].avatar+'" alt="avatar" height="42" width="42"><a class="menu" href="#">'+user[0].username+'</a></li>',
+                    '<li><img src="'+user[0].avatar+'" alt="avatar" height="42" width="42"><a class="menu" id="profile" href="' + amigable("module=profile") +  '">'+user[0].username+'</a></li>',
                     '<li><a class="menu" id="logout" href="' + amigable("module=login&function=logout", true) +  '" data-tr="Log out"></a></li>'
                 );
                 for (var i=0;i<menu_basic.length;i++){
@@ -47,7 +47,7 @@ function print_menu(){
                 console.log("menu_client");
             }else{
                 menu_basic.push(
-                    '<li><img src="'+user[0].avatar+'" alt="avatar" height="42" width="42"><a class="menu" href="#">'+user[0].username+'</a></li>',
+                    '<li><img src="'+user[0].avatar+'" alt="avatar" height="42" width="42"><a class="menu" id="profile" href="' + amigable("module=profile") +  '">'+user[0].username+'</a></li>',
                     '<li><a class="menu" id="logout" href="' + amigable("module=login&function=logout", true) +  '" data-tr="Log out"></a></li>'
                 );
                 for (var i=0;i<menu_basic.length;i++){
