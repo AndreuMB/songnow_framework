@@ -4,4 +4,8 @@
         <name>list_profile</name>
         <uri>list_profile</uri>
     </function>
+    <function>
+        <name>c_user</name>
+        <uri>c_user</uri>
+    </function>
 </functions>

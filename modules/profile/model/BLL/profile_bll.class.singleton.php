@@ -1,11 +1,11 @@
 <?php
-	class home_bll{
+	class profile_bll{
 	    private $dao;
 	    private $db;
 	    static $_instance;
 
 	    private function __construct() {
-	        $this->dao = home_dao::getInstance();
+	        $this->dao = profile_dao::getInstance();
 	        $this->db = db::getInstance();
 	    }
 
@@ -16,35 +16,8 @@
 	        return self::$_instance;
 	    }
 
-		public function obtain_data_carousel_BLL(){
-			return $this->dao->select_data_carousel($this->db);
-		}
-		public function obtain_data_categories_BLL($arrArgument){
-			return $this->dao->select_data_categories($this->db,$arrArgument);
-		}
-	    public function obtain_data_list_BLL($arrArgument){
-	      return $this->dao->select_data_list($this->db,$arrArgument);
-	    }
-	    public function obtain_data_details_BLL($arrArgument){
-	      return $this->dao->select_data_details($this->db,$arrArgument);
-	    }
-	    public function best_breed_home_BLL($arrArgument){
-	      return $this->dao->select_best_breed($this->db,$arrArgument);
-	    }
-	    public function load_name_BLL(){
-	      return $this->dao->select_load_name($this->db);
-	    }
-	    public function select_auto_name_BLL($arrArgument){
-	      return $this->dao->select_auto_name($this->db,$arrArgument);
-	    }
-	    public function active_user_BLL($arrArgument){
-	      return $this->dao->update_active_user($this->db,$arrArgument);
-		}
-		public function sum_view_song_BLL($arrArgument){
-			return $this->dao->update_sum_view_song($this->db,$arrArgument);
-		}
-		public function sum_view_categ_BLL($arrArgument){
-			return $this->dao->update_sum_view_categ($this->db,$arrArgument);
+		public function update_user_BLL($arrArgument){
+			return $this->dao->update_user($this->db,$arrArgument);
 		}
 		
 	}
